@@ -9,26 +9,27 @@ app.get('/', function (req, res) {
 app.post('/depstrt', function (req, res) {
   console.log("Deploy config handler");
     // console.log(req.info.address);
-  for (var i = 0; i < req.payload.push.changes.length; i++) {
-    console.log(req.payload.push.changes[i].new);
-    if (req.payload.repository.name === "handz_services" && req.payload.push.changes[i].new.name === "feature/product") {
-      execFile('scripts/autoDeployServer.sh', function(error, stdout, stderr) {
-        // Log success in some manner
-        console.log( error );
-        console.log( stdout );
-        console.log( 'exec handz_services auto Deploy complete' );
-      });
-      break;
-    } else if (req.payload.repository.name === "sassy_mobile_final" && req.payload.push.changes[i].new.name === "master") {
-      execFile('scripts/autoDeployMobile.sh', function(error, stdout, stderr) {
-        // Log success in some manner
-        console.log( error );
-        console.log( stdout );
-        console.log( 'exec sassy_mobile_final auto Deploy complete' );
-      });
-      break;
-    } else console.log("No changes made");
-  };
+  if (req.payload && req.payload.push)
+	  for (var i = 0; i < req.payload.push.changes.length; i++) {
+	    console.log(req.payload.push.changes[i].new);
+	    if (req.payload.repository.name === "handz_services" && req.payload.push.changes[i].new.name === "feature/product") {
+	      execFile('scripts/autoDeployServer.sh', function(error, stdout, stderr) {
+	        // Log success in some manner
+	        console.log( error );
+	        console.log( stdout );
+	        console.log( 'exec handz_services auto Deploy complete' );
+	      });
+	      break;
+	    } else if (req.payload.repository.name === "sassy_mobile_final" && req.payload.push.changes[i].new.name === "master") {
+	      execFile('scripts/autoDeployMobile.sh', function(error, stdout, stderr) {
+	        // Log success in some manner
+	        console.log( error );
+	        console.log( stdout );
+	        console.log( 'exec sassy_mobile_final auto Deploy complete' );
+	      });
+	      break;
+	    } else console.log("No changes made");
+	  };
 
   
   res.status(200).send("done");
