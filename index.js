@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 app.post('/depstrt', function (req, res) {
   console.log("Deploy config handler");
     // console.log(req.info.address);
-  if (req.payload && req.payload.push)
+  // if (req.payload && req.payload.push){
 	  for (var i = 0; i < req.payload.push.changes.length; i++) {
 	    console.log(req.payload.push.changes[i].new);
 	    if (req.payload.repository.name === "handz_services" && req.payload.push.changes[i].new.name === "feature/product") {
@@ -30,8 +30,7 @@ app.post('/depstrt', function (req, res) {
 	      break;
 	    } else console.log("No changes made");
 	  };
-
-  
+  // }
   res.status(200).send("done");
 });
 
