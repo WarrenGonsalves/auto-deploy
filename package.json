@@ -1,0 +1,27 @@
+{
+  "name": "auto-deploy",
+  "version": "1.0.0",
+  "description": "Auto deploy repo once pushed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WarrenGonsalves/auto-deploy.git"
+  },
+  "keywords": [
+    "git",
+    "node",
+    "express"
+  ],
+  "author": "Warren Gonsalves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WarrenGonsalves/auto-deploy/issues"
+  },
+  "homepage": "https://github.com/WarrenGonsalves/auto-deploy",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
