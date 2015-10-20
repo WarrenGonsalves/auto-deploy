@@ -1,6 +1,11 @@
 var express = require('express');
 var app = express();
 var execFile = require('child_process').execFile;
+var bodyParser = require('body-parser');
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
 	res.send("42");
@@ -9,8 +14,9 @@ app.get('/', function (req, res) {
 app.post('/depstrt', function (req, res) {
   console.log("Deploy config handler");
     // console.log(req.info.address);
-  // if (req.body && req.body.push){
   	console.log(req.body);
+  	console.log(req.payload);
+  if (req.body && req.body.push){
 	  for (var i = 0; i < req.body.push.changes.length; i++) {
 	    console.log(req.body.push.changes[i].new);
 	    if (req.body.repository.name === "handz_services" && req.body.push.changes[i].new.name === "feature/product") {
@@ -31,7 +37,7 @@ app.post('/depstrt', function (req, res) {
 	      break;
 	    } else console.log("No changes made");
 	  };
-  // }
+  }
   res.status(200).send("done");
 });
 
