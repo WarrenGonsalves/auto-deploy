@@ -1,11 +1,12 @@
 var express = require('express');
 var app = express();
+var execFile = require('child_process').execFile;
 
 app.get('/', function (req, res) {
 	res.send("42");
 })
 
-app.post('/startDeploy', function (req, res) {
+app.post('/depstrt', function (req, res) {
   console.log("Deploy config handler");
     // console.log(req.info.address);
   for (var i = 0; i < req.payload.push.changes.length; i++) {
@@ -33,7 +34,7 @@ app.post('/startDeploy', function (req, res) {
   res.status(200).send("done");
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(9000, function () {
   var host = server.address().address;
   var port = server.address().port;
 
